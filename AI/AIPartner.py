@@ -2,13 +2,15 @@ import streamlit as st
 from openai import OpenAI
 import Fun
 import json
+import os
 st.set_page_config(
     page_title="AI蠢货伴侣",
     page_icon="pai.png",
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
+st.write("当前工作目录:", os.getcwd())
+st.write("主脚本路径:", __file__)
 st.title("我叫AI，我很强！")
 st.sidebar.subheader("控制面包")
 if st.sidebar.button("新建对话",width=200):
