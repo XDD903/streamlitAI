@@ -5,17 +5,17 @@ import json
 import os
 import tempfile
 st.set_page_config(
-    page_title="AI蠢货伴侣",
-    page_icon="pai.png",
+    page_title="AI智能伴侣",
+    page_icon=os.path.join(os.path.dirname(os.path.abspath(__file__)),"pai.png"),
     layout="wide",
     initial_sidebar_state="expanded",
 )
-st.write("当前工作目录:", os.getcwd())
-st.write("主脚本路径:", __file__)
-st.write("临时目录",tempfile.gettempdir())
+#st.write("当前工作目录:", os.getcwd())
+#st.write("主脚本路径:", __file__)
+#st.write("临时目录",tempfile.gettempdir())
 
-st.title("我叫AI，我很强！")
-st.sidebar.subheader("控制面包")
+st.title("我叫AI")
+st.sidebar.subheader("控制面版")
 if st.sidebar.button("新建对话",width=200):
     Fun.CreateSession()#按下创建对话后，创建了对话文件，之后清空session_state，下面1号块显示对话就为空
     Fun.ClearSessionState()#创建新对话后，要清除原本session_state内的缓存，留给新对话用
@@ -27,8 +27,8 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"SessionPath.j
         if st.sidebar.button(i,width=175):
             Fun.LoadSession(i)
 
-name:str=st.sidebar.text_input("名？",placeholder="我已急哭")
-nature:str=st.sidebar.text_area("性？")
+name:str=st.sidebar.text_input("名字",placeholder="无")
+nature:str=st.sidebar.text_area("性格")
 
 client = OpenAI(
     api_key="sk-2289471daa3747119dae65b42094e798",
