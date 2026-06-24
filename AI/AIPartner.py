@@ -18,7 +18,7 @@ if st.sidebar.button("新建对话",width=200):
     Fun.ClearSessionState()#创建新对话后，要清除原本session_state内的缓存，留给新对话用
 st.sidebar.write("历史对话")
 
-with open("SessionPath.json","r",encoding="utf-8") as fp:
+with open(os.getcwd()+"./SessionPath.json","r",encoding="utf-8") as fp:
     Session_list=json.load(fp)
     for i in Session_list:
         if st.sidebar.button(i,width=175):
