@@ -3,6 +3,7 @@ from openai import OpenAI
 import Fun
 import json
 import os
+import tempfile
 st.set_page_config(
     page_title="AI蠢货伴侣",
     page_icon="pai.png",
@@ -11,6 +12,8 @@ st.set_page_config(
 )
 st.write("当前工作目录:", os.getcwd())
 st.write("主脚本路径:", __file__)
+st.write("临时目录",tempfile.gettempdir())
+
 st.title("我叫AI，我很强！")
 st.sidebar.subheader("控制面包")
 if st.sidebar.button("新建对话",width=200):
