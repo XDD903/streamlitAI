@@ -9,7 +9,7 @@ def CreateSession():
             "mymessages": st.session_state.mymessages,
             "Dialog_name": st.session_state.Dialog_name
         }
-        with open(f"JSON/{st.session_state.Dialog_name}.json", "w", encoding="utf-8") as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f"JSON/{st.session_state.Dialog_name}.json"), "w", encoding="utf-8") as f:
             json.dump(session_data, f, ensure_ascii=False, indent=2)
 
 def CheckKey():
