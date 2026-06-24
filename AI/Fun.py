@@ -19,23 +19,22 @@ def CheckKey():
     return False
 
 def LoadSessionPath():
-
     PathName=st.session_state["Dialog_name"]
     old_Session_list=[]
-    with open("SessionPath.json","r",encoding="utf-8") as fp:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"SessionPath.json"),"r",encoding="utf-8") as fp:
         old_Session_list = json.load(fp)
         for i in old_Session_list:
             if st.session_state.Dialog_name==i:
                 return
-    with open("SessionPath.json", "w", encoding="utf-8") as fp:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),"SessionPath.json"), "w", encoding="utf-8") as fp:
         AllSession_list=[*old_Session_list,PathName]
         json.dump(AllSession_list, fp,ensure_ascii=False,indent=2)
 
-
+st.success(os.path.join(os.path.dirname(os.path.abspath(__file__)),f"JSON/{SessionName}.json"))
 def LoadSession(SessionName):
-    if os.path.exists(f"JSON/{SessionName}.json"):
+    if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),f"JSON/{SessionName}.json")):
         ClearSessionState()
-        with open(f"JSON/{SessionName}.json","r",encoding="utf-8") as fp:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),f"JSON/{SessionName}.json"),"r",encoding="utf-8") as fp:
             session_data=json.load(fp)
             st.session_state.mymessages=session_data["mymessages"]
             st.session_state.name=session_data["name"]
