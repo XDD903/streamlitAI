@@ -9,8 +9,8 @@ def CreateSession():
             "mymessages": st.session_state.mymessages,
             "Dialog_name": st.session_state.Dialog_name
         }
-        st.success(os.path.join(os.path.dirname(os.path.abspath(__file__)), f"JSON/{st.session_state.Dialog_name}.json"))
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), f"JSON/{st.session_state.Dialog_name}.json"), "w", encoding="utf-8") as f:
+        st.success(os.path.join(tempfile.gettempdir(), f"{st.session_state.Dialog_name}.json"))
+        with open(os.path.join(tempfile.gettempdir(), f"{st.session_state.Dialog_name}.json"), "w", encoding="utf-8") as f:
             json.dump(session_data, f, ensure_ascii=False, indent=2)
 
 def CheckKey():
@@ -32,9 +32,9 @@ def LoadSessionPath():
         json.dump(AllSession_list, fp,ensure_ascii=False,indent=2)
 
 def LoadSession(SessionName):
-    if os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)),f"JSON/{SessionName}.json")):
+    if os.path.exists(os.path.join(tempfile.gettempdir(), f"{SessionName}.json")):
         ClearSessionState()
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),f"JSON/{SessionName}.json"),"r",encoding="utf-8") as fp:
+        with open(os.path.join(tempfile.gettempdir(), f"{SessionName}.json"),"r",encoding="utf-8") as fp:
             session_data=json.load(fp)
             st.session_state.mymessages=session_data["mymessages"]
             st.session_state.name=session_data["name"]
